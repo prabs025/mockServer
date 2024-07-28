@@ -42,8 +42,22 @@ public class MockupController {
                         .build(), HttpStatus.OK);
     }
 
-    @GetMapping("/test")
-    public String getTestDat(){
-        return "Test Successful";
+    @PostMapping("/fpaepsservice/api/2fa")
+    public ResponseEntity<?> twoFactorAuth(
+
+            @RequestBody String body
+    ){
+        log.info("Request Headers ---> body:{}",
+                body);
+
+
+        return new ResponseEntity<>(GlobalApiResponse
+                .<String>builder(
+                )
+                .status(true)
+                .message("Success from airtailpay.")
+                .data("Success 2FA")
+                .statusCode(10000)
+                .build(), HttpStatus.OK);
     }
 }

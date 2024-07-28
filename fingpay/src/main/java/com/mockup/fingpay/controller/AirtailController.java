@@ -19,14 +19,15 @@ import org.springframework.web.bind.annotation.*;
 public class AirtailController {
     @PostMapping("/ataepsservice/api/aadhaarPay/merchant/pay")
     public ResponseEntity<?> merchantPayApi(
-            @RequestHeader String trnTimeStamp,
+            @RequestHeader String date,
+            @RequestHeader (value = "X-Request-ID")String id,
+            @RequestHeader(value = "X-Tran-Type") String Type,
+            @RequestHeader (value = "X-Access-Channel") String acess,
             @RequestHeader String hash,
-            @RequestHeader String deviceIMEI,
-            @RequestHeader String esKey,
+            @RequestHeader String authorization,
             @RequestBody String body
     ){
-        log.info("Request Headers ---> trnTimeStamp: {}, hash: {}, deviceIMEI: {}, esKey: {}, body:{}",
-                trnTimeStamp, hash, deviceIMEI, esKey, body);
+        log.info("Request Headers ---> trnTimeStamp: {}, hash: {}, deviceIMEI: {}, esKey: {}, body:{}",body);
 
 
         return new ResponseEntity<>(GlobalApiResponse
@@ -57,8 +58,5 @@ public class AirtailController {
                 .build(), HttpStatus.OK);
     }
 
-    @GetMapping("/test")
-    public String getTestDat(){
-        return "Test Successful";
-    }
+
 }
