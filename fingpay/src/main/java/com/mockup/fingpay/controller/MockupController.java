@@ -2,6 +2,7 @@ package com.mockup.fingpay.controller;
 
 import com.mockup.fingpay.dto.response.ApiResponse;
 import com.mockup.fingpay.dto.response.GlobalApiResponse;
+import com.mockup.fingpay.dto.response.TransactionResponseFailureDto;
 import com.mockup.fingpay.service.MockupService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -26,21 +27,39 @@ public class MockupController {
             @RequestHeader String hash,
             @RequestHeader String deviceIMEI,
             @RequestHeader String esKey,
-            @RequestBody String body
+            @RequestBody String body,
+            @RequestParam(required = false,defaultValue = "CW") String type,
+            @RequestParam(required = false,defaultValue = "true")Boolean success
     ){
         log.info("Request Headers ---> trnTimeStamp: {}, hash: {}, deviceIMEI: {}, esKey: {}, body:{}",
                 trnTimeStamp, hash, deviceIMEI, esKey, body);
 
 
-        return new ResponseEntity<>(GlobalApiResponse
-                .<ApiResponse>builder(
-        )
-                .status(true)
-                .message("Success from fingpay.")
-                .data(new ApiResponse())
-                .statusCode(10000)
-                        .build(), HttpStatus.OK);
+        if(success){
+            return new ResponseEntity<>(GlobalApiResponse
+                    .<ApiResponse>builder(
+                    )
+                    .status(true)
+                    .message("Request Completed")
+                    .data(new ApiResponse(type))
+                    .statusCode(10000)
+                    .build(), HttpStatus.OK);
+        }else {
+            return new ResponseEntity<>(GlobalApiResponse
+                    .<TransactionResponseFailureDto>builder(
+                    )
+                    .status(false)
+                    .message("Fingerprint did not matched with Aadhaar, please try another finger")
+                    .data(new TransactionResponseFailureDto(type))
+                    .statusCode(10004)
+                    .build(), HttpStatus.OK);
+        }
+
+
     }
+
+
+
 
     @PostMapping("/fpaepsservice/api/2fa")
     public ResponseEntity<?> twoFactorAuth(
