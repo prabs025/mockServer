@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/fingpay.iml" filepath="$PROJECT_DIR$/.idea/fingpay.iml" />
+      <module fileurl="file://$PROJECT_DIR$/fingpay/fingpay.iml" filepath="$PROJECT_DIR$/fingpay/fingpay.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/mockServer.iml" filepath="$PROJECT_DIR$/.idea/mockServer.iml" />
     </modules>
   </component>
 </project>

@@ -30,14 +30,8 @@ public class AirtailController {
         log.info("Request Headers ---> trnTimeStamp: {}, hash: {}, deviceIMEI: {}, esKey: {}, body:{}",body);
 
 
-        return new ResponseEntity<>(GlobalApiResponse
-                .<TransactionDTO>builder(
-                )
-                .status(true)
-                .message("Success from airtailpay.")
-                .data(new TransactionDTO())
-                .statusCode(10000)
-                .build(), HttpStatus.OK);
+        return new ResponseEntity<>(new TransactionDTO()
+               , HttpStatus.OK);
     }
     @PostMapping("/ataepsservice/api/2fa")
     public ResponseEntity<?> twoFactorAuth(

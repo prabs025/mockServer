@@ -41,7 +41,8 @@ public class ApiResponse {
                 this.setTransactionType("CW");
                 this.setFingpayTransactionId("CWBD0491833010520000431984I");
                 this.setMerchantIxnId("1588271670690");
-                this.setResponseCode("U3");
+//                this.setResponseCode("U3");
+                this.setResponseCode("00");
                 break;
 
             case "BE":

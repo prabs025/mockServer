@@ -12,6 +12,10 @@ public class TransactionDTO {
         private String status;
         private String code;
         private String description;
+
+        public MetaDTO(){
+            this.status="00";
+        }
     }
 
     @Data
