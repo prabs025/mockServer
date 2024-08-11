@@ -52,7 +52,7 @@ public class AirtailController {
         meta.put("description", "Success");
 
         Map<String, String> data = new HashMap<>();
-        data.put("accessToken", "abcdef/dsa==");
+        data.put("accessToken", "abcdef");
         data.put("expiresIn", "282400");
 
         response.put("meta", meta);
