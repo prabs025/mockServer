@@ -13,6 +13,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @Slf4j
 @RestController
 @RequiredArgsConstructor
@@ -41,15 +44,20 @@ public class AirtailController {
         log.info("Request Headers ---> body:{}",
                  body);
 
+        Map<String, Object> response = new HashMap<>();
 
-        return new ResponseEntity<>(GlobalApiResponse
-                .<String>builder(
-                )
-                .status(true)
-                .message("Success from airtailpay.")
-                .data("Success 2FA")
-                .statusCode(10000)
-                .build(), HttpStatus.OK);
+        Map<String, String> meta = new HashMap<>();
+        meta.put("status", "");
+        meta.put("code", "");
+        meta.put("description", "");
+
+        Map<String, String> data = new HashMap<>();
+        data.put("accessToken", "");
+        data.put("expiresIn", "");
+
+        response.put("meta", meta);
+        response.put("data", data);
+        return new ResponseEntity<>(response,HttpStatus.OK);
     }
 
 
