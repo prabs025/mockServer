@@ -42,10 +42,10 @@ public class ApiResponse {
                 this.setFingpayTransactionId("CWBD0491833010520000431984I");
                 this.setMerchantIxnId("1588271670690");
 //                this.setResponseCode("U3");
-                this.setResponseCode("00");
+                this.setResponseCode("0012");
                 break;
 
-            case "BE":
+            case "BI":
                 this.setTerminalId("FA012123");
 
                 this.setTransactionAmount(101L);
@@ -58,9 +58,21 @@ public class ApiResponse {
                 this.setResponseCode("00");
                 break;
 
-            case "M":
+            case "MS":
                 this.setTerminalId("FA012123");
 
+                this.setTransactionAmount(101L);
+                this.setTransactionStatus("SUCCESS");
+                this.setBalanceAmount(200L);
+                this.setBankRRN("765765656857");
+                this.setTransactionType("M");
+                this.setFingpayTransactionId("MB00010291117175529");
+                this.setMerchantIxnId("123221");
+                this.setResponseCode("00");
+                break;
+
+            case "AP":
+                this.setTerminalId("FA012123");
                 this.setTransactionAmount(101L);
                 this.setTransactionStatus("SUCCESS");
                 this.setBalanceAmount(200L);
