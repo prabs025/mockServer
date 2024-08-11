@@ -47,13 +47,13 @@ public class AirtailController {
         Map<String, Object> response = new HashMap<>();
 
         Map<String, String> meta = new HashMap<>();
-        meta.put("status", "");
-        meta.put("code", "");
-        meta.put("description", "");
+        meta.put("status", "0");
+        meta.put("code", "00");
+        meta.put("description", "Success");
 
         Map<String, String> data = new HashMap<>();
-        data.put("accessToken", "");
-        data.put("expiresIn", "");
+        data.put("accessToken", "abcdef/dsa==");
+        data.put("expiresIn", "282400");
 
         response.put("meta", meta);
         response.put("data", data);
