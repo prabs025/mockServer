@@ -60,5 +60,26 @@ public class AirtailController {
         return new ResponseEntity<>(response,HttpStatus.OK);
     }
 
+    @PostMapping("/cpaepsservice/api/2fa")
+    public ResponseEntity<?> twoFactorAuthCredoPay(
+
+            @RequestBody String body
+    ){
+        log.info("Request Headers ---> body:{}",
+                body);
+        Map<String, String> transactionData = new HashMap<>();
+        transactionData.put("transaction_type", "Authentication");
+        transactionData.put("response_code", "00");
+        transactionData.put("response_status", "Authentication Successful");
+        transactionData.put("customer_name", "");
+        transactionData.put("date", "20221215");
+        transactionData.put("time", "");
+        transactionData.put("auth_reference_no", "335511138989");
+        transactionData.put("response_description", "Authentication Successful");
+        transactionData.put("transaction_id", "639aef6fc2369c56479a6358");
+        transactionData.put("created_at", "2022-12-15 15:27:03");
+        return new ResponseEntity<>(transactionData,HttpStatus.OK);
+    }
+
 
 }
