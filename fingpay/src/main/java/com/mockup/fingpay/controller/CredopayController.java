@@ -8,11 +8,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
 
 /*
     @created 09/08/2024 11:24 PM
@@ -62,5 +61,32 @@ public class CredopayController {
     public ResponseEntity<?> completeTransaction(@RequestBody CredopayTransactionCompleteRequestDto requestDto){
         log.info("Request Received for completion of transaction: {}", requestDto);
         return new ResponseEntity<>(Map.of("status", "success"), HttpStatus.OK);
+    }
+
+    @PostMapping("/cpaepsservice/api/2fa")
+    public ResponseEntity<?> twoFactorAuthCredoPay(
+
+            @RequestBody CredopayRequestDto body,
+            @RequestParam(required = false,defaultValue = "true") Boolean status
+    ){
+        log.info("Request Headers ---> body:{}",
+                body);
+        Map<String, String> transactionData = new HashMap<>();
+        transactionData.put("transaction_type", "Authentication");
+        transactionData.put("response_code", "00");
+        transactionData.put("response_status", "Authentication Successful");
+        transactionData.put("customer_name", "");
+        transactionData.put("date", "20221215");
+        transactionData.put("time", "");
+        transactionData.put("auth_reference_no", "335511138989");
+        transactionData.put("response_description", "Authentication Successful");
+        transactionData.put("transaction_id", "639aef6fc2369c56479a6358");
+        transactionData.put("created_at", "2022-12-15 15:27:03");
+
+        Map<String, Object> errorResponse = new HashMap<>();
+        errorResponse.put("response_description", "Invalid certificate identifier in ci attribute of Skey");
+        errorResponse.put("errors", new ArrayList<>()); // Empty list
+        errorResponse.put("transaction_id", "65840eda18c3744fa3ab3005");
+        return new ResponseEntity<>(status?transactionData:errorResponse,HttpStatus.OK);
     }
 }
