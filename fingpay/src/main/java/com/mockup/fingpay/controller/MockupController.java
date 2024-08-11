@@ -1,6 +1,7 @@
 package com.mockup.fingpay.controller;
 
 import com.mockup.fingpay.dto.response.ApiResponse;
+import com.mockup.fingpay.dto.response.FingpayAuthData;
 import com.mockup.fingpay.dto.response.GlobalApiResponse;
 import com.mockup.fingpay.dto.response.TransactionResponseFailureDto;
 import com.mockup.fingpay.service.MockupService;
@@ -71,11 +72,11 @@ public class MockupController {
 
 
         return new ResponseEntity<>(GlobalApiResponse
-                .<String>builder(
+                .<FingpayAuthData>builder(
                 )
                 .status(true)
                 .message("Success from airtailpay.")
-                .data("Success 2FA")
+                .data(new FingpayAuthData())
                 .statusCode(10000)
                 .build(), HttpStatus.OK);
     }
