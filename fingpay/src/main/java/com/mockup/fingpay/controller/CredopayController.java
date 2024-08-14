@@ -22,7 +22,7 @@ import java.util.*;
 @RestController
 public class CredopayController {
 
-    @PostMapping("/v10/transactions/aeps/authentication")
+    @PostMapping("/v10/transactions/aeps/send")
     public ResponseEntity<?> processTransaction(@RequestBody CredopayRequestDto credopayRequestDto){
 
         log.info("Request Received in credopay {}", credopayRequestDto);
@@ -57,7 +57,7 @@ public class CredopayController {
     }
 
 
-    @PostMapping("/v1.0/transactions/aeps/complete")
+    @PostMapping("/v10/transactions/aeps/complete")
     public ResponseEntity<?> completeTransaction(@RequestBody CredopayTransactionCompleteRequestDto requestDto){
         log.info("Request Received for completion of transaction: {}", requestDto);
         return new ResponseEntity<>(Map.of("status", "success"), HttpStatus.OK);
@@ -65,7 +65,6 @@ public class CredopayController {
 
     @PostMapping("/cpaepsservice/api/2fa")
     public ResponseEntity<?> twoFactorAuthCredoPay(
-
             @RequestBody CredopayRequestDto body,
             @RequestParam(required = false,defaultValue = "true") Boolean status
     ){
